@@ -1,0 +1,13 @@
+[project]
+name = "connect-json-schema-gen"
+version = "0.0.1"
+authors = [
+  { name="Joseph Riddle", email="joeriddles10@gmail.com" },
+]
+description = "Generate a Synadia Connect component with AI!"
+readme = "README.md"
+requires-python = ">=3.10"
+
+[project.urls]
+"Homepage" = "https://github.com/joeriddles/connect-json-schema-gen"
+"Bug Tracker" = "https://github.com/joeriddles/connect-json-schema-gen/issues"

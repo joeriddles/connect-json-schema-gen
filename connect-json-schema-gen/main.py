@@ -9,9 +9,9 @@ from pydantic_ai import Agent, UnexpectedModelBehavior, capture_run_messages
 from pydantic_ai.models.openai import OpenAIModel
 from rich.pretty import pprint
 
-import model
+from . import model
 
-print = functools.partial(pprint, indent_guides=False)
+pprint = functools.partial(pprint, indent_guides=False)
 
 # gpt-3.5-turbo
 # gpt-4o-mini
@@ -19,7 +19,8 @@ ai_model = OpenAIModel("gpt-4o-mini")
 
 agent = Agent(ai_model, result_type=model.SynadiaConnectComponent)
 
-if __name__ == "__main__":
+
+def main():
     user_prompt = " ".join(sys.argv[1:]).strip()
     if user_prompt == "":
         cmd = sys.argv[0]
@@ -40,7 +41,7 @@ if __name__ == "__main__":
                 )
             sys.exit(1)
 
-    print(result.data.model_dump(exclude_none=True, exclude_unset=True))
+    pprint(result.data.model_dump(exclude_none=True, exclude_unset=True))
 
     # Save generated model to file
     model_json = result.data.model_dump_json(
@@ -48,8 +49,12 @@ if __name__ == "__main__":
     )
     kind = result.data.kind.value
     component_name = result.data.name.replace(" ", "_").casefold()
-    filepath = f".connect/{kind}s/{component_name}.json"
+    filepath = f"../.connect/{kind}s/{component_name}.json"
     with open(filepath, "w") as fout:
         fout.write(model_json)
 
     subprocess.call(["make", "convert"])
+
+
+if __name__ == "__main__":
+    main()
