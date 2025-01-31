@@ -1,0 +1,35 @@
+model_version: "1.0"
+name: RSS Feed Sink
+label: RSS Feed Sink
+kind: sink
+status: stable
+description: An RSS feed sink component to publish data to an RSS feed.
+fields:
+  - path: url
+    name: URL
+    label: Feed URL
+    kind: scalar
+    type: string
+    description: The URL of the RSS feed where data will be published.
+    optional: false
+  - path: title
+    name: Title
+    label: Entry Title
+    kind: scalar
+    type: string
+    description: The title of the entry to be published in the RSS feed.
+    optional: false
+  - path: description
+    name: Description
+    label: Entry Description
+    kind: scalar
+    type: string
+    description: A description of the entry for the RSS feed.
+    optional: true
+  - path: categories
+    name: Categories
+    label: Entry Categories
+    kind: list
+    type: string
+    description: Categories for the RSS feed entry, can be multiple values.
+    optional: true
