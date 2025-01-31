@@ -1,0 +1,38 @@
+model_version: "1.0"
+name: RSSFeedSource
+label: RSS Feed Source
+kind: source
+status: stable
+description: This component fetches and processes RSS feeds from specified URLs. It parses the feed and outputs structured data for further processing.
+fields:
+  - path: feed_url
+    name: Feed URL
+    label: Feed URL
+    kind: scalar
+    type: string
+    description: The URL of the RSS feed to fetch.
+  - path: update_interval
+    name: Update Interval
+    label: Update Interval
+    kind: scalar
+    type: int
+    description: The interval in seconds for fetching updates from the RSS feed.
+    default: 300
+  - path: max_items
+    name: Maximum Items
+    label: Maximum Items
+    kind: scalar
+    type: int
+    description: The maximum number of items to retrieve from the feed.
+    default: 10
+  - path: output_format
+    name: Output Format
+    label: Output Format
+    kind: scalar
+    type: string
+    description: The format of the output data (e.g., JSON, XML).
+    default: JSON
+    constraints:
+      - enum:
+          - JSON
+          - XML
